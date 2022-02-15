@@ -34,9 +34,12 @@ app.use('*', (req, res, next) => {
   next();
 })
 
+app.get('/', (req, res) => {
+  res.render('index')
+});
 
 app.use('/user', userRouter)
-app.use('/shop', productRouter)
+app.use('/', productRouter)
 
 app.listen(PORT, () => {
   console.info(`Server is running at port: http://localhost:${PORT}`);

@@ -3,9 +3,14 @@ const fs = require('fs');
 const path = require('path')
 
 exports.showProduct = async (req, res) => {
-    ProductModel.find({user: userDetail}, (err, products) => {
-        if(err) return res.status(400).json({message: err})
-        res.render('shop', {products: products})
+    ProductModel.find({}, (err, products) => {
+        if(err) {
+            console.log(err)
+            return;
+        }
+        else {
+            res.render('shop', {products: products})
+        }
     })
 }
 
@@ -30,6 +35,6 @@ exports.createProduct = async (req, res) => {
     }
     ProductModel.create(product, (err, item) => {
         if(err) console.error(err);
-        res.redirect('/shop');
+        res.redirect('/shop/shopDetail');
     })
 }

@@ -18,10 +18,6 @@ let uploadImg = multer({
     storage: storage
 })
 
-router.get('/', (req, res) => {
-    res.render('index')
-});
-
 router.get('/shop', auth.authen, (req, res) => {
     res.render("shop");
 });
@@ -32,12 +28,12 @@ router.get('/contact', auth.authen, (req, res) => {
 router.get('/blog', auth.authen, (req, res) => {
     res.render("blog");
 });
-
-router.get('/addProduct', auth.authen, (req, res) => {
+router.get('/shop/addProduct', auth.authen, (req, res) => {
     res.render("addProduct");
 });
 
-router.get('/abc', productController.showProduct)
+
+router.get('/shop/shopDetail', productController.showProduct)
 router.post('/shop/addProduct', uploadImg.single('img'), productController.createProduct)
 
 module.exports = router;
