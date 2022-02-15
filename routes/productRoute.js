@@ -37,7 +37,7 @@ router.get('/addProduct', auth.authen, (req, res) => {
     res.render("addProduct");
 });
 
-router.get('/shop', productController.showProduct)
+router.get('/abc', productController.showProduct)
 router.post('/shop/addProduct', uploadImg.single('img'), productController.createProduct)
 
 module.exports = router;

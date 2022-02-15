@@ -3,10 +3,8 @@ const fs = require('fs');
 const path = require('path')
 
 exports.showProduct = async (req, res) => {
-    console.log(userDetail)
     ProductModel.find({user: userDetail}, (err, products) => {
-        if(err) res.status(500).send('An error occured', err)
-        console.log('hehe')
+        if(err) return res.status(400).json({message: err})
         res.render('shop', {products: products})
     })
 }

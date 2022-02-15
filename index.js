@@ -36,7 +36,7 @@ app.use('*', (req, res, next) => {
 
 
 app.use('/user', userRouter)
-app.use('/', productRouter)
+app.use('/shop', productRouter)
 
 app.listen(PORT, () => {
   console.info(`Server is running at port: http://localhost:${PORT}`);
