@@ -5,7 +5,7 @@ exports.userRegister = async function(req, res, next) {
     UserModel.create(req.body.password == req.body.comfirmPassword ? req.body : false, (err, user) => {
         if (err) res.redirect('/user/register')
         if (user) {
-            res.redirect('/user/login');
+          res.redirect('/user/login');
         }
     })
 }
@@ -18,7 +18,8 @@ exports.userLogin = async function(req, res , next) {
         if(same) {
           userDetail = user.username
           req.session.userId = user._id;
-          res.redirect('/');
+          checkIdUser = user._id
+          res.redirect('/home');
         }
         else{
           res.redirect('/user/login')

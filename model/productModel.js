@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['NEW', 'SALE', 'OUT-STOCK']
+        enum: ['new', 'sale', 'stockout', 'stockblue']
     },
     img: {
         data: Buffer,

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const connectDB = require('./database/connection');
 const expressSession = require('express-session');
+const productController = require('./controller/productController')
 
 const userRouter = require('./routes/userRoute');
 const productRouter = require('./routes/productRoute')
@@ -18,7 +19,7 @@ app.use('/js', express.static(path.resolve(__dirname, 'assets/js')));
 const PORT = process.env.PORT || 3000;
 
 global.loggedIn = null;
-global.userDetail = null;
+global.checkIdUser = null;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -34,9 +35,7 @@ app.use('*', (req, res, next) => {
   next();
 })
 
-app.get('/', (req, res) => {
-  res.render('index')
-});
+app.get('/', productController.showProductHome);
 
 app.use('/user', userRouter)
 app.use('/', productRouter)

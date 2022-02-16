@@ -2,14 +2,26 @@ const ProductModel = require('../model/productModel');
 const fs = require('fs');
 const path = require('path')
 
-exports.showProduct = async (req, res) => {
-    ProductModel.find({}, (err, products) => {
+exports.showProductUser = async (req, res) => {
+    ProductModel.find({user: checkIdUser}, (err, products) => {
         if(err) {
             console.log(err)
             return;
         }
         else {
             res.render('shop', {products: products})
+        }
+    })
+}
+
+exports.showProductHome = async (req, res) => {
+    ProductModel.find({}, (err, products) => {
+        if(err) {
+            console.log(err)
+            return;
+        }
+        else {
+            res.render('index', {products: products})
         }
     })
 }
@@ -31,7 +43,7 @@ exports.createProduct = async (req, res) => {
             data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
             contentType: 'image/png'
         },
-        user: userDetail
+        user: checkIdUser
     }
     ProductModel.create(product, (err, item) => {
         if(err) console.error(err);

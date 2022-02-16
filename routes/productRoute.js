@@ -18,6 +18,7 @@ let uploadImg = multer({
     storage: storage
 })
 
+
 router.get('/shop', auth.authen, (req, res) => {
     res.render("shop");
 });
@@ -33,7 +34,7 @@ router.get('/shop/addProduct', auth.authen, (req, res) => {
 });
 
 
-router.get('/shop/shopDetail', productController.showProduct)
+router.get('/shop/shopDetail', auth.authen, productController.showProductUser)
 router.post('/shop/addProduct', uploadImg.single('img'), productController.createProduct)
 
 module.exports = router;
