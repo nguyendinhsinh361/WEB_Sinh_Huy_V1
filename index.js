@@ -5,12 +5,14 @@ const path = require('path');
 const connectDB = require('./database/connection');
 const expressSession = require('express-session');
 const productController = require('./controller/productController')
+const methodOverride = require('method-override');
 
 const userRouter = require('./routes/userRoute');
 const productRouter = require('./routes/productRoute')
 
 const app = express();
 connectDB();
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 app.use('/css', express.static(path.resolve(__dirname, 'assets/css')));

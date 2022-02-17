@@ -19,7 +19,7 @@ exports.userLogin = async function(req, res , next) {
           userDetail = user.username
           req.session.userId = user._id;
           checkIdUser = user._id
-          res.redirect('/home');
+          res.redirect('/');
         }
         else{
           res.redirect('/user/login')
@@ -31,7 +31,7 @@ exports.userLogin = async function(req, res , next) {
   })
 }
 
-exports.userLogout = function(req, res) {
+exports.userLogout = async function(req, res) {
   req.session.destroy(() => {
     res.redirect('/');
   })

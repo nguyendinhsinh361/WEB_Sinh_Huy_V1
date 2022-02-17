@@ -22,6 +22,10 @@ const ProductSchema = new Schema({
         type: String,
         enum: ['new', 'sale', 'stockout', 'stockblue']
     },
+    category: {
+        type: String,
+        enum: ['women', 'men', 'kid', 'accessories', 'cosmetic']
+    },
     img: {
         data: Buffer,
         contentType: String

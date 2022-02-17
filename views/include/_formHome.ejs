@@ -1,5 +1,5 @@
 <% products.forEach(function(product){ %>
-    <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+    <div class="col-lg-3 col-md-4 col-sm-6 mix <%= product.category %>">
         <div class="product__item">
             <div class="product__item__pic set-bg" data-setbg="data:image/<%=product.img.contentType%>;base64,<%=product.img.data.toString('base64')%>">
                 <div class="label <%= product.status %>"><%= product.status %></div>
