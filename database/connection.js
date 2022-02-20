@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/appStoreSinhHuy', {
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb://localhost/appStoreSinhHuy`, {
+        await mongoose.connect(`mongodb+srv://sinh:${process.env.PASSWORD}@web.oo2bm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
             useUnifiedTopology: true,
             useNewUrlParser: true
         })
