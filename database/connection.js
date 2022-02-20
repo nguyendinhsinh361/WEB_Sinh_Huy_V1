@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/appStoreSinhHuy', {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-})
 
 const connectDB = async () => {
     try {
