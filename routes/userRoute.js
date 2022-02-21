@@ -17,7 +17,7 @@ router.get('/login', (req, res) => {
 
 router.post('/register', upload.none(), userController.userRegister);
 router.post('/login', upload.none(), userController.userLogin);
-router.get('/logout', userController.userLogout);
+router.get('/logout', auth.authen, userController.userLogout);
 
 router.get('/manager', auth.admin, userController.showUser)
 router.get('/manager/edit/:id', auth.admin, userController.showFormUpdate)

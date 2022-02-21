@@ -34,7 +34,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(expressSession({
-  secret: 'sinhhuy'
+  secret: 'sinhhuy',
+  resave: true,
+  saveUninitialized: false
 }))
 
 app.use('*', (req, res, next) => {
