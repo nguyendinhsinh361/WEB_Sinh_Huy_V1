@@ -14,14 +14,19 @@ const app = express();
 connectDB();
 app.use(methodOverride('_method'));
 
+
 app.set('view engine', 'ejs');
 app.use('/css', express.static(path.resolve(__dirname, 'assets/css')));
 app.use('/img', express.static(path.resolve(__dirname, 'assets/img')));
 app.use('/js', express.static(path.resolve(__dirname, 'assets/js')));
+app.use('/vendor', express.static(path.resolve(__dirname, 'assets/vendor')));
 const PORT = process.env.PORT || 3000;
 
 global.loggedIn = null;
 global.checkIdUser = null;
+global.userDetail = null;
+global.allUser = [];
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -38,6 +43,7 @@ app.use('*', (req, res, next) => {
 })
 
 app.get('/', productController.showProductHome);
+
 
 app.use('/user', userRouter)
 app.use('/', productRouter)

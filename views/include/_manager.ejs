@@ -1,0 +1,22 @@
+<% for(let i=1 ; i < users.length ; i++) { %>
+
+    <tr>
+        <td>
+            <%= i %>
+        </td>
+        <td>
+            <%= allUser[i-1].username %>
+        </td>
+        <td>
+            <%= allUser[i-1].password %>
+        </td>
+        <td>
+            <a href="/user/manager/edit/<%= users[i]._id %>" class="btn btn-dark btn-block mb-2">Update</a>
+            <form action="/user/manager/<%= users[i]._id %>?_method=delete" method="POST" style="margin: -5px 0 0 3px;">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Delete" class="btn btn-danger btn-block">
+            </form>
+        </td>
+    </tr>
+
+    <%}%>

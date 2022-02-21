@@ -54,7 +54,8 @@ exports.createProduct = async (req, res) => {
 
 exports.showFormUpdate = async (req, res) => {
     const id = req.params.id;
-    const product = await ProductModel.findOne({_id:id}).lean();
+    const product = await ProductModel.findOne({_id:id});
+    // Chuyển dưới dạng document;
     res.render('updateProduct', {product})
 }
 
