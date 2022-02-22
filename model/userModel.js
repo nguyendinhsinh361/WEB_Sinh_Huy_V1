@@ -24,10 +24,6 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function (next) {
     let user = this;
-    if(this.username != process.env.ADMIN) {
-        allUser.push({username: this.username, password: this.password, id: this.id})
-    }
-    console.log(allUser);
     bcrypt.hash(user.password, 10, function (err, hash) {
         // Store hash in your password DB.
         if (err) console.error(err);

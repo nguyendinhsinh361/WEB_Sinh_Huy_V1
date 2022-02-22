@@ -25,7 +25,6 @@ const PORT = process.env.PORT || 3000;
 global.loggedIn = null;
 global.checkIdUser = null;
 global.userDetail = null;
-global.allUser = [];
 
 
 app.use(bodyParser.json());

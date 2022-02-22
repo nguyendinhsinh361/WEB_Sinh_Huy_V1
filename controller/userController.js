@@ -9,7 +9,6 @@ UserModel.findOne({username: process.env.ADMIN}, (err, user) => {
   }
 })
 
-  
 
 exports.userRegister = async function(req, res, next) {
     UserModel.create(req.body.password == req.body.comfirmPassword ? req.body : false, (err, user) => {
@@ -56,33 +55,22 @@ exports.showUser = async (req, res) => {
           return;
       }
       else {
-          res.render('managerUser', {users: users,  allUser})
+          res.render('managerUser', {users: users})
       }
   })
 }
 
 exports.showFormUpdate = async (req, res) => {
   const id = req.params.id;
-  let userFake;
-  for(let i = 0 ; i < allUser.length ; i++) {
-    if(allUser[i].id == id) {
-      userFake = allUser[i];
-    }
-  }
   const user = await UserModel.findOne({_id:id});
   
   // Chuyển dưới dạng document;
-  res.render('updateUser', {user, userFake})
+  res.render('updateUser', {user})
 }
 
 exports.updateUser = async(req, res) => {
   const id = req.params.id;
   let {username, password} = req.body
-  for(let i = 0 ; i < allUser.length ; i++) {
-    if(allUser[i].id == id) {
-      allUser[i].password = password;
-    }
-  }
   const user = await UserModel.findOne({_id:id});
   user.password = await bcrypt.hash(password, 10)
   console.log(user)
@@ -92,11 +80,6 @@ exports.updateUser = async(req, res) => {
 
 exports.deleteUser = async(req, res) => {
   const id = req.params.id;
-  for(let i = 0 ; i < allUser.length ; i++) {
-    if(allUser[i].id == id) {
-      allUser.splice(i, 1)
-    }
-  }
   await UserModel.findOneAndRemove({_id: id});
   res.redirect('/user/manager')
 }
